@@ -1,25 +1,27 @@
 {
     "compilerOptions": {
-        "lib": ["DOM", "DOM.Iterable", "ES2019"],
+        "lib": ["ES2019"],
         "target": "ES2019",
         "module": "ES2020",
+        "isolatedModules": true,
         "esModuleInterop": true,
         "strict": true,
-        "rootDir": "src",
-        "outDir": "dist",
+        "outDir": "build",
         "moduleResolution": "node",
-        "forceConsistentCasingInFileNames": true,
         "removeComments": true,
         "resolveJsonModule": true,
         "sourceMap": true,
         "baseUrl": ".",
         "paths": {
-        "~/*": ["./app/*"]
+            "~/*": ["./src/*"]
         },
         "skipLibCheck": true,
+        "noEmit": false,
+        "forceConsistentCasingInFileNames": true,
         "allowJs": true
     },
     "include": [
-        "src/**/*",
-    ],
+        "**/*.ts",
+        "src/**/*"
+    ]
   }
