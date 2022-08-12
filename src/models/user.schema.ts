@@ -5,24 +5,16 @@ import {
   GraphQLInt,
   GraphQLSchema,
 } from "graphql";
-import find from "lodash/find";
+import axios from "axios";
+import dotenv from "dotenv";
 
-const users = [
-  {
-    id: 1,
-    firstName: "John",
-    lastName: "Smith",
-    age: 30,
-    email: "jsmith@mail.io",
-  },
-  {
-    id: 2,
-    firstName: "Jane",
-    lastName: "Doe",
-    age: 31,
-    email: "jdoe@mail.io",
-  },
-];
+dotenv.config();
+
+const baseUrl = process.env.API_BASE_URL || "http://localhost:4040/";
+const accessToken = `Bearer ${process.env.ACCESS_TOKEN}`;
+
+axios.defaults.baseURL = baseUrl;
+axios.defaults.headers.common.Authorization = accessToken;
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -36,10 +28,16 @@ const UserType = new GraphQLObjectType({
     lastName: {
       type: GraphQLString,
     },
+    email: {
+      type: GraphQLString,
+    },
+    username: {
+      type: GraphQLString,
+    },
     age: {
       type: GraphQLInt,
     },
-    email: {
+    gender: {
       type: GraphQLString,
     },
   },
@@ -52,7 +50,7 @@ const RootQuery = new GraphQLObjectType({
       type: UserType,
       args: { id: { type: GraphQLInt } },
       resolve(parentValue, args) {
-        return find(users, { id: args.id });
+        return axios.get(`/users/${args.id}`).then((res) => res.data);
       },
     },
   },
