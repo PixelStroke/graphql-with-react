@@ -2,11 +2,11 @@
   "name": "graphql-with-react",
   "version": "1.0.0",
   "description": "Learn and master GraphQL by building real web apps with React and Node",
-  "main": "index.js",
+  "main": "src/app.ts",
   "scripts": {
     "build": "tsc --build",
     "clean": "rimraf build",
-    "dev": "run-s clean build start",
+    "dev": "run-s clean build watch",
     "dev:keep": "run-s build start",
     "lint": "eslint ./src --fix --ext .ts,.js",
     "format": "prettier --config .prettierrc \"./src/**/*.ts\" --write",
@@ -14,7 +14,8 @@
     "setup:app": "run-p lint typecheck format",
     "start": "node ./build/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "watch": "nodemon src/app.ts"
   },
   "prettier": {},
   "eslintIgnore": [
@@ -45,8 +46,10 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.19",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
   }
 }

@@ -1,7 +1,7 @@
-import { graphqlHTTP } from "express-graphql";
-import userSchema from "../models/user.schema";
+import { graphqlHTTP } from 'express-graphql';
+import schema from '../schemas/index';
 
 export default graphqlHTTP({
-  schema: userSchema,
+  schema,
   graphiql: true,
 });
