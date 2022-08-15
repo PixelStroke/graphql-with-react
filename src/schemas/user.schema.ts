@@ -3,6 +3,7 @@ import {
   GraphQLID,
   GraphQLString,
   GraphQLInt,
+  GraphQLBoolean,
 } from 'graphql';
 import httpService from '../services/http.service';
 import CompanyType from './company.schema';
@@ -18,6 +19,7 @@ const UserType: GraphQLObjectType<any, any> = new GraphQLObjectType({
     age: { type: GraphQLInt },
     gender: { type: GraphQLString },
     jobPosition: { type: GraphQLString },
+    isActive: { type: GraphQLBoolean },
     company: {
       type: CompanyType,
       resolve: async (parentValue) => {

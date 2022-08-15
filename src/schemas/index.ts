@@ -3,6 +3,7 @@ import httpService from '../services/http.service';
 import UserType from './user.schema';
 import ProductType from './product.schema';
 import CompanyType from './company.schema';
+import UserMutation from '../mutators/user.mutation';
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -36,4 +37,5 @@ const RootQuery = new GraphQLObjectType({
 
 export default new GraphQLSchema({
   query: RootQuery,
+  mutation: UserMutation,
 });

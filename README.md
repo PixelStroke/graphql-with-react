@@ -32,3 +32,46 @@ fragment companyFields on Company {
     description
 }
 ```
+
+#### Mutations to get started
+
+Add a new user:
+```graphql
+fragment minimalUser on User {
+  id
+  username
+  isActive
+}
+
+mutation {
+  addUser(
+    firstName: "Shon",
+    lastName: "Thomas",
+  	age: 33,
+  	email: "shon@mail.io",
+    username: "shon.thomas",
+    password: "login123",
+    gender: "Male"
+  ) {
+    ...minimalUser
+  }
+}
+```
+
+Update a user
+```graphql
+mutation {
+  updateUser(id: 303, isActive: true) {
+    ...minimalUser
+  }
+}
+```
+
+Delete a user
+```graphql
+mutation {
+  deleteUser(id: 302) {
+    ...minimalUser
+  }
+}
+```
